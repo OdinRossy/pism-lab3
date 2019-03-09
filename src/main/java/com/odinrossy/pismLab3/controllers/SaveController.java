@@ -20,7 +20,7 @@ public class SaveController extends HttpServlet {
     private final AnswerService answerService = new AnswerServiceImpl();
 
     @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
 

@@ -27,10 +27,10 @@ public class AuthenticationController extends HttpServlet {
                 throw new RuntimeException("Email or password is null (Вы не ввели email или пароль)");
 
             userService.authorizeUser(new User(username, password), session);
-            response.sendRedirect("profile");
+            response.sendRedirect("user");
         } catch (Exception e) {
-            session.setAttribute("errorMsg", e.getMessage());
-            response.sendError(400, e.getMessage());
+            request.setAttribute("errorMessage", e.getMessage());
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
         }
     }
 }

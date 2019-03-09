@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Упс..</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="style/error.css">
+        <link rel="stylesheet" href="http://localhost:8080/pism-lab3/style/error.css">
         <link rel="shortcut icon" type="image/png" href="https://img.icons8.com/color/64/000000/speedometer.png"/>
     </head>
     <body>
@@ -19,11 +19,14 @@
                         <span>400</span>
                     </div>
                     <div class="error-message">
-                        <span><%=session.getAttribute("errorMsg") == null ?
-                                "Похоже, вы ввели данные некорректно :(" : session.getAttribute("errorMsg") %></span>
+                        <% String message = (String) request.getAttribute("errorMessage");
+//                        response.geth
+                        %>
+                        <span><%=message == null ?
+                                "Похоже, вы ввели данные некорректно :(" : message %></span>
                     </div>
                     <div class="button-container">
-                        <a href="profile" class="btn btn-warning btn-lg" role="button">На главную</a>
+                        <a href="user" class="btn btn-warning btn-lg" role="button">На главную</a>
                     </div>
                 </div>
                 <div class="col-md-3"></div>
