@@ -27,7 +27,7 @@ public class QuestionController extends HttpServlet {
             userService.checkUserAuthorization(request);
             request.getRequestDispatcher("pages/questions.jsp").forward(request,response);
         } catch (UserNotAuthorizedException e) {
-            response.sendRedirect("/pism-lab3");
+            response.sendRedirect("/pism-lab3/");
         } catch (Exception e) {
             request.setAttribute("errorMessage", e.getMessage());
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, e.getMessage());

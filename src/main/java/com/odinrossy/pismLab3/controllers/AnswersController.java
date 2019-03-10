@@ -37,7 +37,7 @@ public class AnswersController extends HttpServlet {
             request.setAttribute("answers", answerList);
             request.getRequestDispatcher("pages/answers.jsp").forward(request, response);
         } catch (UserNotAuthorizedException e) {
-            response.sendRedirect("/pism-lab3");
+            response.sendRedirect("/pism-lab3/");
         } catch (Exception e) {
             response.sendError(400, e.getMessage());
         }

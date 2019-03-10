@@ -1,9 +1,12 @@
 package com.odinrossy.pismLab3.controllers;
 
+import com.odinrossy.pismLab3.exceptions.UserNotAuthorizedException;
 import com.odinrossy.pismLab3.model.Answer;
 import com.odinrossy.pismLab3.model.User;
 import com.odinrossy.pismLab3.services.AnswerService;
 import com.odinrossy.pismLab3.services.AnswerServiceImpl;
+import com.odinrossy.pismLab3.services.UserService;
+import com.odinrossy.pismLab3.services.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,13 +21,21 @@ public class SaveController extends HttpServlet {
     private static long counter = 0;
 
     private final AnswerService answerService = new AnswerServiceImpl();
+    private final UserService userService = new UserServiceImpl();
 
     @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        doPost(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
 
         try {
+            userService.checkUserAuthorization(request);
+
             User currentUser = (User) request.getSession().getAttribute("currentUser");
             String username = currentUser.getUsername();
             String brand = request.getParameter("brand");
@@ -67,8 +78,10 @@ public class SaveController extends HttpServlet {
             session.setAttribute("answer", answer);
             request.getRequestDispatcher("pages/saved.jsp").forward(request, response);
 
+        } catch (UserNotAuthorizedException e) {
+            response.sendRedirect("/pism-lab3/");
         } catch (Exception e) {
-            session.setAttribute("errorMsg", e.getMessage());
+            request.setAttribute("errorMessage", e.getMessage());
             response.sendError(400, e.getMessage());
         }
     }
