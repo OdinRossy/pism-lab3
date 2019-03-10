@@ -30,7 +30,7 @@ public class UserRepositoryImpl implements UserRepository {
             if (user.getUsername().equals(username))
                 return user;
         }
-        throw new UserNotFoundException();
+        throw new UserNotFoundException("Can't find user with username: " + username);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class UserRepositoryImpl implements UserRepository {
             if (user.getUsername().equals(username) && user.getPassword().equals(password))
                 return user;
         }
-        throw new UserNotFoundException();
+        throw new UserNotFoundException("Can't find user with username: " + username + " and password: " + password);
     }
 
     @Override

@@ -17,7 +17,7 @@ public class AnswerRepositoryImpl implements AnswerRepository {
             if (answer.getId() == id)
                 return answer;
         }
-        throw new AnswerNotFoundException();
+        throw new AnswerNotFoundException("Can't find answer with id: " + id);
     }
 
     @Override
