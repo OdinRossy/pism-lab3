@@ -8,6 +8,6 @@ public interface AnswerService {
 
     List<Answer> getAnswerForUser(String username);
 
-    Answer addAnswer(Answer answer);
+    void addAnswer(Answer answer);
 
 }

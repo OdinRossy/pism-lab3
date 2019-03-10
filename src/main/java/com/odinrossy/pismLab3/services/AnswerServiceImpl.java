@@ -18,9 +18,11 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public Answer addAnswer(Answer answer) {
-        if (answer != null)
-            return answerRepository.addAnswer(answer);
+    public void addAnswer(Answer answer) {
+        if (answer != null) {
+            answerRepository.addAnswer(answer);
+            return;
+        }
         throw new RuntimeException("Object of Answer is null");
     }
 }

@@ -8,7 +8,6 @@ import com.odinrossy.pismLab3.services.AnswerServiceImpl;
 import com.odinrossy.pismLab3.services.UserService;
 import com.odinrossy.pismLab3.services.UserServiceImpl;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
